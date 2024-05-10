@@ -6,9 +6,10 @@ public abstract class Atividade {
 
     private int id;
     private String nome;
-    private int tempoDeExecucao;
     private boolean isHard;
 
+    private float caloriasGastas;
+    private int tempoDeExecucao;
     private int repeticoes;
 
     // Constructor
@@ -16,6 +17,7 @@ public abstract class Atividade {
         this.id = id;
         this.nome = nome;
         this.isHard = isHard;
+        this.caloriasGastas = -1;
         this.tempoDeExecucao = -1;
         this.repeticoes = -1;
     }
@@ -28,6 +30,10 @@ public abstract class Atividade {
 
     public void addRepeticoes(int repeticoes){
         this.repeticoes = repeticoes;
+    }
+
+    public void addCaloriasGastas(Utilizador user){
+        this.caloriasGastas = caloriasGastas(user);
     }
 
     // SETS E GETS
@@ -45,6 +51,14 @@ public abstract class Atividade {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public float getCaloriasGastas(){
+        return caloriasGastas;
+    }
+
+    public void setCaloriasGastas(float caloriasGastas){
+        this.caloriasGastas = caloriasGastas;
     }
 
     public int getTempoDeExecucao() {

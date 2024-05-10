@@ -4,8 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import Atividades.Atividade;
 import PlanoTreino.PlanoTreino;
+import interfaces.gerenciadorAtividades;
 
-public abstract class Utilizador{
+public abstract class Utilizador implements gerenciadorAtividades{
 
     private int idUtilizador;
     private String nome;
@@ -37,15 +38,50 @@ public abstract class Utilizador{
 
     public abstract float fatorMultiplicativo();
 
-
-    // ADD and REmove for atividadesRealizadas, planoTreinos
-
     public void addAtividadeRealizada(Atividade atividade){
+        int i = 0;
+        for(; i < atividadesRealizadas.size(); i++){
+
+            Atividade atv = atividadesRealizadas.get(i);
+            if(atv.getID() == atividade.getID())
+                return;
+        }
         atividadesRealizadas.add(atividade);
     }
 
-    public void removeAtividadeRealizada(String nomeAtividade){
-        
+    public void removeAtividadeRealizada(int idAtividade){
+        for(int i = 0; i < atividadesRealizadas.size(); i++){
+            Atividade atv = atividadesRealizadas.get(i);
+
+            if(atv.getID() == idAtividade){
+                atividadesRealizadas.remove(i);
+                break;
+            }
+        }
+    }
+
+    public void addPlanoTreino(PlanoTreino plano){
+        int i = 0;
+        for(; i < planoTreinos.size(); i++){
+
+            PlanoTreino pln = planoTreinos.get(i);
+            if(pln.getID() == plano.getID())
+                return;
+        }
+        planoTreinos.add(plano);
+    }
+
+    public void removePlanoTreino(int idPlano){
+        int i = 0;
+        for(; i < planoTreinos.size(); i++){
+
+            PlanoTreino pln = planoTreinos.get(i);
+            if(pln.getID() == idPlano){
+
+                planoTreinos.remove(i);
+                break;
+            }
+        }
     }
 
     // SET E GETS

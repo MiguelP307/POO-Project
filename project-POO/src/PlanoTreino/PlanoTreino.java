@@ -18,6 +18,28 @@ public class PlanoTreino {
         this.atividades = new ArrayList<>(); // Inicialize a lista de atividades como uma nova ArrayList
     }
 
+    public void addAtividadeRealizada(Atividade atividade){
+        int i = 0;
+        for(; i < atividades.size(); i++){
+
+            Atividade atv = atividades.get(i);
+            if(atv.getID() == atividade.getID())
+                return;
+        }
+        atividades.add(atividade);
+    }
+
+    public void removeAtividadeRealizada(int idAtividade){
+        for(int i = 0; i < atividades.size(); i++){
+            Atividade atv = atividades.get(i);
+
+            if(atv.getID() == idAtividade){
+                atividades.remove(i);
+                break;
+            }
+        }
+    }
+
     //SETS E GETS
     public int getID(){
         return id;

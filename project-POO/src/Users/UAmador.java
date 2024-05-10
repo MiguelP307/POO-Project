@@ -1,5 +1,7 @@
 package Users;
 
+import Atividades.Atividade;
+
 public class UAmador extends Utilizador{
 
     private float fatorMultiplicativo;
@@ -23,5 +25,17 @@ public class UAmador extends Utilizador{
 
     public void setFatorMultiplicativo(float fatorMultiplicativo) {
         this.fatorMultiplicativo = fatorMultiplicativo;
+    }
+
+    @Override
+    public void addAtividade(Atividade atividade) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'addAtividade'");
+    }
+
+    @Override
+    public void removeAtividade(int idAtividade) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'removeAtividade'");
     }
 }
