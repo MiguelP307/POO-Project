@@ -8,15 +8,15 @@ public class ADistanciaAltimetria extends Atividade{
     private float altimetria;
     private int tempoAExecutar;
     
-    public ADistanciaAltimetria(String nome, boolean isHard){
-        super(nome, isHard);
+    public ADistanciaAltimetria(int id, String nome, boolean isHard){
+        super(id, nome, isHard);
         this.distancia = -1;
         this.altimetria = -1;
         this.tempoAExecutar = -1;
     }
 
-    public ADistanciaAltimetria(String nome, boolean isHard, float distancia, float altimetria, int tempoAExecutar){
-        super(nome, isHard);
+    public ADistanciaAltimetria(int id,String nome, boolean isHard, float distancia, float altimetria, int tempoAExecutar){
+        super(id, nome, isHard);
         this.distancia = distancia;
         this.altimetria = altimetria;
         this.tempoAExecutar = tempoAExecutar;

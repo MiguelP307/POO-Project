@@ -7,14 +7,14 @@ public class ADistancia extends Atividade {
     private float distancia;
     private int tempoAExecutar;
 
-    public ADistancia(String nome, boolean isHard){
-        super(nome, isHard);
+    public ADistancia(int id, String nome, boolean isHard){
+        super(id, nome, isHard);
         this.distancia = -1;
         this.tempoAExecutar = -1;
     }
 
-    public ADistancia(String nome, boolean isHard, float distancia, int tempoAExecutar){
-        super(nome, isHard);
+    public ADistancia(int id, String nome, boolean isHard, float distancia, int tempoAExecutar){
+        super(id, nome, isHard);
         this.distancia = distancia;
         this.tempoAExecutar = tempoAExecutar;
     }

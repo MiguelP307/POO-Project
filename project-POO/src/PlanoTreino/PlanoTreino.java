@@ -7,16 +7,26 @@ import Atividades.Atividade;
 
 public class PlanoTreino {
     
+    private int id;
     private LocalDate data;
     private List<Atividade> atividades;
 
     //Construtor
-    public PlanoTreino(LocalDate date){
+    public PlanoTreino(int id, LocalDate date){
+        this.id = id;
         this.data = date;
         this.atividades = new ArrayList<>(); // Inicialize a lista de atividades como uma nova ArrayList
     }
 
     //SETS E GETS
+    public int getID(){
+        return id;
+    }
+
+    public void setID(int id){
+        this.id = id;
+    }
+
     public LocalDate getData() {
         return data;
     }

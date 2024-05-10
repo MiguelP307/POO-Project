@@ -40,6 +40,14 @@ public abstract class Utilizador{
 
     // ADD and REmove for atividadesRealizadas, planoTreinos
 
+    public void addAtividadeRealizada(Atividade atividade){
+        atividadesRealizadas.add(atividade);
+    }
+
+    public void removeAtividadeRealizada(String nomeAtividade){
+        
+    }
+
     // SET E GETS
     public int getIdUtilizador() {
         return idUtilizador;

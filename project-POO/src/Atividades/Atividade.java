@@ -4,6 +4,7 @@ import Users.Utilizador;
 
 public abstract class Atividade {
 
+    private int id;
     private String nome;
     private int tempoDeExecucao;
     private boolean isHard;
@@ -11,7 +12,8 @@ public abstract class Atividade {
     private int repeticoes;
 
     // Constructor
-    public Atividade(String nome, boolean isHard){
+    public Atividade(int id, String nome, boolean isHard){
+        this.id = id;
         this.nome = nome;
         this.isHard = isHard;
         this.tempoDeExecucao = -1;
@@ -29,6 +31,14 @@ public abstract class Atividade {
     }
 
     // SETS E GETS
+    public int getID(){
+        return id;
+    }
+
+    public void setID(int id){
+        this.id = id;
+    }
+
     public String getNome() {
         return nome;
     }

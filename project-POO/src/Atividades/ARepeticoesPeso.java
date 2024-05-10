@@ -8,15 +8,15 @@ public class ARepeticoesPeso extends Atividade{
     int peso;
     int tempoAExecutar;
 
-    public ARepeticoesPeso(String nome, boolean isHard){
-        super(nome, isHard);
+    public ARepeticoesPeso(int id, String nome, boolean isHard){
+        super(id, nome, isHard);
         this.numeroRepeticoes = -1;
         this.peso = -1;
         this.tempoAExecutar = -1;
     }
 
-    public ARepeticoesPeso(String nome, boolean isHard, int numeroRepeticoes, int peso, int tempoAExecutar){
-        super(nome, isHard);
+    public ARepeticoesPeso(int id, String nome, boolean isHard, int numeroRepeticoes, int peso, int tempoAExecutar){
+        super(id ,nome, isHard);
         this.numeroRepeticoes = numeroRepeticoes;
         this.peso = peso;
         this.tempoAExecutar = tempoAExecutar;
