@@ -176,6 +176,131 @@ public class Manager {
     }
 
 
+    // Metodos de visualizacao
+
+    public void mostrarUtilizadores(){
+
+        for(Utilizador user : utilizadores){
+        
+            System.out.println("ID: " + user.getIdUtilizador() + 
+                               " - Nome: " + user.getNome() + 
+                               " - Peso: " + user.getPeso() + 
+                               " - Idade: " + user.getIdade() + 
+                               " - Altura: " + user.getAltura() + 
+                               " - Morada: " + user.getMorada() + 
+                               " - Email: " + user.getEmail() + 
+                               " - Frequencia Cardiaca Mrdia: " + user.getFreqCardiacaMedia());
+
+            mostrarAtividades(user.getAtividadesRealizadas());
+        }
+    }
+
+    public void mostrarAtividades(){
+
+        System.out.println("Atividades Disponíveis:");
+
+        for(Atividade atividade : atividadesDisponiveis){
+
+            System.out.println("ID: " + atividade.getID() + " - Nome: " + atividade.getNome() + " - Dificuldade: " + (atividade.getIsHard() ? "Hard" : "Nao Hard"));
+        }
+    }
+
+    public void mostrarAtividades(List<Atividade> atvs){
+
+        System.out.println("Atividades Realizadas:");
+
+        for(Atividade atividade : atvs){
+            System.out.print("ID: " + atividade.getID() + 
+                             " - Nome: " + atividade.getNome() + 
+                             " - Dificuldade: " + (atividade.getIsHard() ? "Hard" : "Nao Hard") +
+                             " - Calorias gastas: " + atividade.getCaloriasGastas() +
+                             " - Tempo de Execucao: " + atividade.getTempoDeExecucao()
+                             );
+    
+            
+            if(atividade instanceof ADistancia){
+                ADistancia aDistancia = (ADistancia) atividade;
+                System.out.println(" - Distancia: " + aDistancia.getDistancia());
+
+                if(aDistancia.getTempoAExecutar() >= 0)
+                    System.out.println(" - Tempo a executar: " + aDistancia.getTempoAExecutar());
+                else
+                    System.out.println("Tempo a executar: Nenhum");
+                
+            }
+            else if(atividade instanceof ADistanciaAltimetria){
+
+                ADistanciaAltimetria aDistanciaAltimetria = (ADistanciaAltimetria) atividade;
+                System.out.println(" - Distancia: " + aDistanciaAltimetria.getDistancia() + 
+                                   " - Altitude: " + aDistanciaAltimetria.getAltimetria());
+
+                if(aDistanciaAltimetria.getTempoAExecutar() >= 0)
+                    System.out.println(" - Tempo a executar: " + aDistanciaAltimetria.getTempoAExecutar());
+                else
+                    System.out.println("Tempo a executar: Nenhum");
+            }
+            else if(atividade instanceof ARepeticoes){
+                ARepeticoes aRepeticoes = (ARepeticoes) atividade;
+                System.out.println(" - Repeticoes: " + aRepeticoes.getRepeticoes());
+
+                if(aRepeticoes.getTempoAExecutar() >= 0)
+                    System.out.println(" - Tempo a executar: " + aRepeticoes.getTempoAExecutar());
+                else
+                    System.out.println("Tempo a executar: Nenhum");
+            }
+            else if(atividade instanceof ARepeticoesPeso){
+
+                ARepeticoesPeso aRepeticoesPeso = (ARepeticoesPeso) atividade;
+                System.out.println(" - Repeticoes: " + aRepeticoesPeso.getRepeticoes() + 
+                                   " - Peso: " + aRepeticoesPeso.getPeso());
+
+                if(aRepeticoesPeso.getTempoAExecutar() >= 0)
+                    System.out.println(" - Tempo a executar: " + aRepeticoesPeso.getTempoAExecutar());
+                else
+                    System.out.println("Tempo a executar: Nenhum");
+            }
+            else {
+                System.out.println(" - Tipo desconhecido");
+            }
+        }
+    }
+
+    public void mostrarPlanosTreinoUtilizador(int idUtilizador){
+        
+        Utilizador utilizador = null;
+        for(Utilizador user : utilizadores){
+
+            if(user.getIdUtilizador() == idUtilizador){
+                utilizador = user;
+                break;
+            }
+        }
+        if(utilizador != null)
+        {
+            List<PlanoTreino> planos = utilizador.getPlanosDeTreino();
+
+            if(planos.isEmpty()){
+
+                System.out.println("Este utilizador nao possui planos de treino.");
+
+            }else{
+
+                System.out.println("Planos de Treino do Utilizador " + utilizador.getNome() + ":");
+                for(PlanoTreino plano : planos){
+
+                    System.out.println("ID do Plano: " + plano.getID() + " - Data: " + plano.getData());
+                    System.out.println("Atividades:");
+                    
+                    for(Atividade atividade : plano.getAtividades()){
+                        System.out.println("    - ID: " + atividade.getID() + " - Nome: " + atividade.getNome());
+                    }
+                }
+            }
+        }else{
+            System.out.println("Utilizador com ID " + idUtilizador + " nao encontrado...");
+        }
+    }
+
     // SETs e GETs
 
     public int getIDUtilizadores(){
