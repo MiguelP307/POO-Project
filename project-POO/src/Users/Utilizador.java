@@ -15,7 +15,7 @@ public abstract class Utilizador implements gerenciadorAtividades{
     private float altura;
     private String morada;
     private String email;
-    private Float freqCardiacaMedia;
+    private float freqCardiacaMedia;
     private List<Atividade> atividadesRealizadas;
     private List<PlanoTreino> planoTreinos;
 
