@@ -33,21 +33,21 @@ public class Manager {
         this.idPlanos = 1;
     }
 
-    public void criarUtilizador(int idUser, String nome, float peso, int idade, float altura, String morada, String email, float freqCardiacaMedia, int tipoUser){
+    public void criarUtilizador(String nome, float peso, int idade, float altura, String morada, String email, float freqCardiacaMedia, int tipoUser){
 
         Utilizador user = null;
 
         switch (tipoUser) {
             case 1:
-                user = new UOcasional(idUser, nome, peso, idade, altura, morada, email, freqCardiacaMedia);
+                user = new UOcasional(idUtilizadores, nome, peso, idade, altura, morada, email, freqCardiacaMedia);
                 break;
             
             case 2:
-                user = new UAmador(idUser, nome, peso, idade, altura, morada, email, freqCardiacaMedia);
+                user = new UAmador(idUtilizadores, nome, peso, idade, altura, morada, email, freqCardiacaMedia);
                 break;
 
             case 3:
-                user = new UProfissional(idUser, nome, peso, idade, altura, morada, email, freqCardiacaMedia);
+                user = new UProfissional(idUtilizadores, nome, peso, idade, altura, morada, email, freqCardiacaMedia);
                 break;
         
             default:
@@ -57,7 +57,7 @@ public class Manager {
 
         if(user != null){
             utilizadores.add(user);
-            idUser++;
+            idUtilizadores++;
         }
         else{
             System.out.println("Error adicionar utilizador");
@@ -84,25 +84,25 @@ public class Manager {
         }
     }
 
-    public void criarAtividade(int id, String nome, boolean isHard, int tipoAtividade){
+    public void criarAtividade(String nome, boolean isHard, int tipoAtividade){
         
         Atividade atv = null;
 
         switch (tipoAtividade) {
             case 1:
-                atv = new ADistancia(id, nome, isHard);
+                atv = new ADistancia(idAtividades, nome, isHard);
                 break;
 
             case 2:
-                atv = new ADistanciaAltimetria(id, nome, isHard);
+                atv = new ADistanciaAltimetria(idAtividades, nome, isHard);
                 break;
         
             case 3:
-                atv = new ARepeticoes(id, nome, isHard);
+                atv = new ARepeticoes(idAtividades, nome, isHard);
                 break;
         
             case 4:
-                atv = new ARepeticoesPeso(id, nome, isHard);
+                atv = new ARepeticoesPeso(idAtividades, nome, isHard);
                 break;
         
             default:
@@ -147,12 +147,13 @@ public class Manager {
     }
 
     // Instancia um plano de treino e adiciona as atividades escolhidas pelo user
-    public void criarPlanoTreino(int id, LocalDate date, Utilizador user, List<Atividade> atvs){
-        PlanoTreino plano = new PlanoTreino(id, date);
+    public void criarPlanoTreino(LocalDate date, Utilizador user, List<Atividade> atvs){
+        PlanoTreino plano = new PlanoTreino(idPlanos, date);
         for(int i = 0; i < atvs.size(); i++){
             plano.addAtividadeRealizada(atvs.get(i));
         }
         user.addPlanoTreino(plano);
+        idPlanos++;
     }
 
 
