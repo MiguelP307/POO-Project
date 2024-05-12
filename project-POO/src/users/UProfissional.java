@@ -15,7 +15,7 @@ public class UProfissional extends Utilizador{
         return (float)((66 + (13.7 * getPeso()) + (5 * getAltura()) - (6.8 * getIdade())) * 1.9) / 2000;
     }
     
-    // Getters e Setters
+    // GETs e SETs
     public float getFatorMultiplicativo() {
         return fatorMultiplicativo;
     }

@@ -16,7 +16,7 @@ public class PlanoTreino {
     public PlanoTreino(int id, LocalDateTime date){
         this.id = id;
         this.data = date;
-        this.atividades = new ArrayList<>(); // Inicialize a lista de atividades como uma nova ArrayList
+        this.atividades = new ArrayList<>();
     }
 
     public void addAtividadeRealizada(Atividade atividade){
