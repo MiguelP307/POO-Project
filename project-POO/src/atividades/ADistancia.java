@@ -1,6 +1,6 @@
-package Atividades;
+package atividades;
 
-import Users.Utilizador;
+import users.Utilizador;
 
 public class ADistancia extends Atividade {
     
@@ -21,8 +21,7 @@ public class ADistancia extends Atividade {
 
     @Override
     public float caloriasGastas(Utilizador utilizador){
-
-        throw new UnsupportedOperationException("Unimplemented method 'fatorMultiplicativo'");
+        return (float)((utilizador.getPeso() * distancia/1000) * utilizador.fatorMultiplicativo() * (getMediaFreqCardiaca()/120)) ;
     }
 
     // SET E GETS

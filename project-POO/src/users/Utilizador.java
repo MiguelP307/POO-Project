@@ -1,12 +1,12 @@
-package Users;
+package users;
 
 import java.util.ArrayList;
 import java.util.List;
-import Atividades.Atividade;
-import PlanoTreino.PlanoTreino;
-import interfaces.gerenciadorAtividades;
 
-public abstract class Utilizador implements gerenciadorAtividades{
+import atividades.Atividade;
+import plano_treino.PlanoTreino;
+
+public abstract class Utilizador{
 
     private int idUtilizador;
     private String nome;
@@ -20,7 +20,11 @@ public abstract class Utilizador implements gerenciadorAtividades{
     private List<PlanoTreino> planoTreinos;
 
 
-    //Constructor
+    /*
+    Ocasional = 1.375
+    Amador = 1.55 
+    Profissional = 1.9 
+     */
 
     // Construtor
     public Utilizador(int idUtilizador, String nome, float peso, int idade, float altura,  String morada, String email, float freqCardiacaMedia) {
@@ -37,8 +41,11 @@ public abstract class Utilizador implements gerenciadorAtividades{
     }
 
     public abstract float fatorMultiplicativo();
+    public abstract float getFatorMultiplicativo();
+    public abstract void setFatorMultiplicativo(float fatorMultiplicativo);
 
-    public void addAtividadeRealizada(Atividade atividade){
+
+    public void addAtividadeRealizada(Atividade atividade, int tempo, float freqMediaCardiaca){
         int i = 0;
         for(; i < atividadesRealizadas.size(); i++){
 
@@ -46,6 +53,8 @@ public abstract class Utilizador implements gerenciadorAtividades{
             if(atv.getID() == atividade.getID())
                 return;
         }
+        
+        atividade.preencherAtividadeRealizada(this, tempo, freqMediaCardiaca);
         atividadesRealizadas.add(atividade);
     }
 

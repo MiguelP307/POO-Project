@@ -1,12 +1,16 @@
+import java.io.IOException;
+
 import cli.Frontend;
+import manager.Manager;
+
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         // Backend backend = new Backend();
-        
-        Frontend frontend = new Frontend();
+        Manager manager = new Manager();
+        Frontend frontend = new Frontend(manager);
         frontend.start();
     }
 }

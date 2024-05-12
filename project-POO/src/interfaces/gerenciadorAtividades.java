@@ -1,6 +1,6 @@
 package interfaces;
 
-import Atividades.Atividade;
+import atividades.Atividade;
 
 public interface gerenciadorAtividades {
     public void addAtividade(Atividade atividade);

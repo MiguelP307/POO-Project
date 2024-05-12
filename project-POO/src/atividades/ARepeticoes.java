@@ -1,6 +1,6 @@
-package Atividades;
+package atividades;
 
-import Users.Utilizador;
+import users.Utilizador;
 
 public class ARepeticoes extends Atividade{
 
@@ -21,7 +21,8 @@ public class ARepeticoes extends Atividade{
 
     @Override
     public float caloriasGastas(Utilizador utilizador){
-        throw new UnsupportedOperationException("Unimplemented method 'fatorMultiplicativo'");
+        return (float)((((utilizador.getPeso())/70) * utilizador.getFatorMultiplicativo())* numeroRepeticoes);
+
     }
 
     // SETs E GETs

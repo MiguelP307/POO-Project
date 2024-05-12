@@ -1,6 +1,4 @@
-package Users;
-
-import Atividades.Atividade;
+package users;
 
 public class UProfissional extends Utilizador{
 
@@ -14,10 +12,9 @@ public class UProfissional extends Utilizador{
 
     @Override
     public float fatorMultiplicativo() {
-        // TODO FAZER A FORMULA PARA CALCULAR O FATOR MULTIPLICATIVO
-        throw new UnsupportedOperationException("Unimplemented method 'fatorMultiplicativo'");
+        return (float)((66 + (13.7 * getPeso()) + (5 * getAltura()) - (6.8 * getIdade())) * 1.9) / 2000;
     }
-
+    
     // Getters e Setters
     public float getFatorMultiplicativo() {
         return fatorMultiplicativo;
@@ -26,17 +23,4 @@ public class UProfissional extends Utilizador{
     public void setFatorMultiplicativo(float fatorMultiplicativo) {
         this.fatorMultiplicativo = fatorMultiplicativo;
     }
-
-    @Override
-    public void addAtividade(Atividade atividade) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'addAtividade'");
-    }
-
-    @Override
-    public void removeAtividade(int idAtividade) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'removeAtividade'");
-    }
-
 }

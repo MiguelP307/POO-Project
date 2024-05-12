@@ -1,18 +1,19 @@
-package PlanoTreino;
+package plano_treino;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import Atividades.Atividade;
+
+import atividades.Atividade;
 
 public class PlanoTreino {
     
     private int id;
-    private LocalDate data;
+    private LocalDateTime data;
     private List<Atividade> atividades;
 
     //Construtor
-    public PlanoTreino(int id, LocalDate date){
+    public PlanoTreino(int id, LocalDateTime date){
         this.id = id;
         this.data = date;
         this.atividades = new ArrayList<>(); // Inicialize a lista de atividades como uma nova ArrayList
@@ -49,11 +50,11 @@ public class PlanoTreino {
         this.id = id;
     }
 
-    public LocalDate getData() {
+    public LocalDateTime getData() {
         return data;
     }
 
-    public void setData(LocalDate data) {
+    public void setData(LocalDateTime data) {
         this.data = data;
     }
 
