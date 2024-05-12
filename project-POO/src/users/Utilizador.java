@@ -1,12 +1,13 @@
 package users;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import atividades.Atividade;
 import plano_treino.PlanoTreino;
 
-public abstract class Utilizador{
+public abstract class Utilizador implements Serializable{
 
     private int idUtilizador;
     private String nome;

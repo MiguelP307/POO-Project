@@ -1,8 +1,10 @@
 package atividades;
 
+import java.io.Serializable;
+
 import users.Utilizador;
 
-public abstract class Atividade {
+public abstract class Atividade implements Serializable{
 
     private int id;
     private String nome;

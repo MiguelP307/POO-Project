@@ -1,12 +1,13 @@
 package plano_treino;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 import atividades.Atividade;
 
-public class PlanoTreino {
+public class PlanoTreino implements Serializable{
     
     private int id;
     private LocalDateTime data;

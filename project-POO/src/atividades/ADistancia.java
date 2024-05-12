@@ -2,7 +2,7 @@ package atividades;
 
 import users.Utilizador;
 
-public class ADistancia extends Atividade {
+public class ADistancia extends Atividade{
     
     private float distancia;
     private int tempoAExecutar;

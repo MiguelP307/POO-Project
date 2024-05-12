@@ -11,6 +11,12 @@ import users.UOcasional;
 import users.UProfissional;
 import users.Utilizador;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +37,8 @@ public class Manager {
         this.idUtilizadores = 1;
         this.idAtividades = 1;
         this.idPlanos = 1;
+
+        criarDiretorios();
     }
 
     public void criarUtilizador(String nome, float peso, int idade, float altura, String morada, String email, float freqCardiacaMedia, int tipoUser){
@@ -339,6 +347,145 @@ public class Manager {
             }
         }
         return null; 
+    }
+
+    public void saveData() {
+        try {
+            // Salvar dados dos utilizadores em arquivos individuais dentro da pasta "utilizadores"
+            for (Utilizador utilizador : utilizadores) {
+                String fileName = "saves/utilizadores/" + utilizador.getIdUtilizador() + ".dat";
+                FileOutputStream fileOut = new FileOutputStream(fileName);
+                ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
+                objectOut.writeObject(utilizador);
+                objectOut.close();
+                fileOut.close();
+            }
+
+            // Salvar lista de atividades em "atividades.txt"
+            FileOutputStream atividadesFileOut = new FileOutputStream("saves/atividades.txt");
+            ObjectOutputStream atividadesObjectOut = new ObjectOutputStream(atividadesFileOut);
+            atividadesObjectOut.writeObject(atividadesDisponiveis);
+            atividadesObjectOut.close();
+            atividadesFileOut.close();
+
+            // Salvar IDs em "ids.txt"
+            FileOutputStream idsFileOut = new FileOutputStream("saves/ids.txt");
+            ObjectOutputStream idsObjectOut = new ObjectOutputStream(idsFileOut);
+            idsObjectOut.writeInt(idUtilizadores);
+            idsObjectOut.writeInt(idAtividades);
+            idsObjectOut.writeInt(idPlanos);
+            idsObjectOut.close();
+            idsFileOut.close();
+
+            System.out.println("Data saved successfully.");
+        } catch (IOException e) {
+            System.out.println("Error saving data: " + e.getMessage());
+        }
+    }
+    
+
+    public void loadData(){
+        try {
+            // Carrega os dados dos utilizadores
+            File utilizadoresFolder = new File("saves/utilizadores");
+            File[] utilizadoresFiles = utilizadoresFolder.listFiles();
+
+            if (utilizadoresFiles != null) {
+                for (File file : utilizadoresFiles) {
+                    FileInputStream fileIn = new FileInputStream(file);
+                    ObjectInputStream objectIn = new ObjectInputStream(fileIn);
+                    Utilizador utilizador = (Utilizador) objectIn.readObject();
+                    utilizadores.add(utilizador);
+                    objectIn.close();
+                    fileIn.close();
+                }
+            }
+
+            // Carrega a lista de atividades
+            FileInputStream atividadesFileIn = new FileInputStream("saves/atividades.txt");
+            ObjectInputStream atividadesObjectIn = new ObjectInputStream(atividadesFileIn);
+            atividadesDisponiveis = (List<Atividade>) atividadesObjectIn.readObject();
+            atividadesObjectIn.close();
+            atividadesFileIn.close();
+
+            // Carrega os IDs
+            FileInputStream idsFileIn = new FileInputStream("saves/ids.txt");
+            ObjectInputStream idsObjectIn = new ObjectInputStream(idsFileIn);
+            idUtilizadores = idsObjectIn.readInt();
+            idAtividades = idsObjectIn.readInt();
+            idPlanos = idsObjectIn.readInt();
+            idsObjectIn.close();
+            idsFileIn.close();
+
+            System.out.println("Data loaded successfully.");
+        } 
+        catch(IOException | ClassNotFoundException e){
+            System.out.println("Error loading data: " + e.getMessage());
+        }
+    }
+
+    public void apagarFicheirosSalvos() {
+        try {
+            // Apaga os arquivos de utilizadores
+            File utilizadoresFolder = new File("saves/utilizadores");
+            if(utilizadoresFolder.exists()){
+                File[] utilizadoresFiles = utilizadoresFolder.listFiles();
+                if(utilizadoresFiles != null){
+                    for(File file : utilizadoresFiles){
+                        file.delete();
+                    }
+                }
+            }
+
+            // Apaga os arquivo de atividades
+            File atividadesFile = new File("saves/atividades.txt");
+            if(atividadesFile.exists()){
+                atividadesFile.delete();
+            }
+
+            // Apaga oa arquivo de IDs
+            File idsFile = new File("saves/ids.txt");
+            if(idsFile.exists()){
+                idsFile.delete();
+            }
+
+            System.out.println("Files deleted with sucess!");
+        } catch (Exception e) {
+            System.out.println("Error while deleting files: " + e.getMessage());
+        }
+    }
+
+    private void criarDiretorios() {
+        
+        File savesFolder = new File("saves");
+        if(!savesFolder.exists()){
+            savesFolder.mkdir();
+        }
+
+        File utilizadoresFolder = new File("saves/utilizadores");
+        if(!utilizadoresFolder.exists()){
+            utilizadoresFolder.mkdir();
+        }
+
+        File atividadesFile = new File("saves/atividades.txt");
+        if(!atividadesFile.exists()){
+            try{
+                atividadesFile.createNewFile();
+            }
+            catch(IOException e){
+                e.printStackTrace();
+            }
+        }
+
+        File idsFile = new File("saves/ids.txt");
+        if (!idsFile.exists()){
+            try{
+                idsFile.createNewFile();
+            } 
+            catch(IOException e){
+                e.printStackTrace();
+            }
+        }
     }
 
     // SETs e GETs
